@@ -2,9 +2,15 @@
   <button @click="onClick">My Button</button>
 </template>
 
-<script>
-export default {
-  data() {
+<script lang="ts">
+import Vue from "vue";
+
+export type DataType = {
+  count: number;
+};
+
+export default Vue.extend({
+  data(): DataType {
     return {
       count: 0
     };
@@ -22,5 +28,5 @@ export default {
       this.$emit("click", this.count);
     }
   }
-};
+});
 </script>

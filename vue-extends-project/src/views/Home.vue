@@ -12,41 +12,45 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 // @ is an alias to /src
 import MyButton from "@/components/MyButton.vue";
 import ResetButton from "@/components/ResetButton.vue";
 
-export default {
-  name: "home",
+export type DataType = {
+  greatText: string;
+  count: number;
+};
+
+export default Vue.extend({
   components: {
     MyButton,
     ResetButton
   },
-  data() {
+  data(): DataType {
     return {
       greatText: "Hello",
       count: 0
     };
   },
   methods: {
-    onMyButtonClicked(count) {
+    onMyButtonClicked(count: number) {
       this.greatText = "こんにちわ";
       this.count = count;
     }
   },
   computed: {
-    isRegulars() {
+    isRegulars(): boolean {
       return this.count >= 3;
     }
   },
   watch: {
-    count(c){
-      if(c === 3){
-        alert("常連になりました")
+    count(c: number) {
+      if (c === 3) {
+        alert("常連になりました");
       }
     }
   }
-
-};
+});
 </script>
