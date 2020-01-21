@@ -12,41 +12,34 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Watch } from "vue-property-decorator";
 // @ is an alias to /src
 import MyButton from "@/components/MyButton.vue";
 import ResetButton from "@/components/ResetButton.vue";
 
-export default {
-  name: "home",
+@Component({
   components: {
     MyButton,
     ResetButton
-  },
-  data() {
-    return {
-      greatText: "Hello",
-      count: 0
-    };
-  },
-  methods: {
-    onMyButtonClicked(count) {
-      this.greatText = "こんにちわ";
-      this.count = count;
-    }
-  },
-  computed: {
-    isRegulars() {
-      return this.count >= 3;
-    }
-  },
-  watch: {
-    count(c){
-      if(c === 3){
-        alert("常連になりました")
-      }
+  }
+})
+export default class Home extends Vue {
+  public greatText: string = "Hello";
+  private count: number = 0;
+
+  public onMyButtonClicked(count: number) {
+    this.greatText = "こんにちわ";
+    this.count = count;
+  }
+  public get isRegulars(): boolean {
+    return this.count >= 3;
+  }
+  @Watch("count")
+  public countChange() {
+    if (this.count === 3) {
+      alert("常連になりました");
     }
   }
-
-};
+}
 </script>

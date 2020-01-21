@@ -2,29 +2,25 @@
   <button @click="onClick">Reset</button>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      initialValue: null
-    };
-  },
-  props: {
-    value: {
-      type: String,
-      default: null
-    }
-  },
-  created() {
+<script lang="ts">
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
+
+@Component
+export default class ResetButton extends Vue {
+  private initialValue!: string;
+  @Prop()
+  value!: string;
+
+  /** ライフサイクルフック */
+  public created() {
     this.initialValue = this.value;
-  },
-  methods: {
-    input(value) {
-      this.$emit("input", value);
-    },
-    onClick() {
-      this.input(this.initialValue);
-    }
   }
-};
+
+  @Emit()
+  public input(value: string) {
+  }
+  public onClick() {
+    this.input(this.initialValue);
+  }
+}
 </script>
