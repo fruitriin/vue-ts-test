@@ -1,4 +1,4 @@
-# vue-class-style-project
+# vue-base-project
 
 ## Project setup
 ```
