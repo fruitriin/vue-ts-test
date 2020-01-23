@@ -24,16 +24,18 @@ export type DataType = {
 };
 
 export default Vue.extend({
-  components: {
-    MyButton,
-    ResetButton
-  },
   data(): DataType {
     return {
       greatText: "Hello",
       count: 0
     };
   },
+  
+  components: {
+    MyButton,
+    ResetButton
+  },
+
   methods: {
     onMyButtonClicked(count: number) {
       this.greatText = "こんにちわ";
